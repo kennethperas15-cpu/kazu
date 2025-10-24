@@ -1,0 +1,122 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 20px 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #4b2e05;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #4b2e05;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #b89655;
+}
+
+
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+.motto {
+  background: url('per.jpg') no-repeat center center/cover;
+  font-family: 'Italiana', serif;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 100px;
+  color: #4b2e05;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+.motto-text {
+  max-width: 500px;
+  margin-left: 500px;
+}
+
+.motto h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-family: 'Italiana', serif;
+}
+
+.motto p {
+  margin-bottom: 25px;
+  font-family: 'Italiana', serif;
+}
+
+button {
+  background: #e5d1a6;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #c2a667;
+}
+
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px 30px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    width: 200px;
+    display: none;
+    text-align: right;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  nav ul.show {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}

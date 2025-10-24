@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>12:03 Perfume | Login / Sign Up</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: url("log.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .card {
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 20px;
+    width: 340px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  h2 { color: #3e2a10; text-align: center; margin-bottom: 16px; }
+  input {
+    width: 94%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    margin: 8px 0;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #d6b774;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .switch { text-align: center; margin-top: 12px; font-size: 14px; }
+  .switch a { color: #5a3b0c; font-weight: bold; cursor: pointer; }
+
+  .hidden { display: none; margin-left: 30px; }
+
+  .msg {
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: none;
+    text-align: center;
+  }
+  .msg.success { background: #e2ffe7; color: #1b5e20; }
+  .msg.error { background: #ffe5e5; color: #9b0000; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div id="successMsg" class="msg success"></div>
+    <div id="errorMsg" class="msg error"></div>
+
+    
+    <form id="loginForm" action="login.php" method="POST">
+      <h2>Login</h2>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit" >Login</button>
+      <div class="switch">Don’t have an account? <a id="showSignup">Sign Up</a></div>
+    </form>
+
+    
+    <form id="signupForm" class="hidden" action="signup.php" method="POST">
+      <h2>Sign Up</h2>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+      <div class="switch">Already have an account? <a id="showLogin">Login</a></div>
+    </form>
+  </div>
+
+<script>
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  const showSignup = document.getElementById("showSignup");
+  const showLogin = document.getElementById("showLogin");
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
+
+  showSignup.addEventListener("click", () => {
+    loginForm.classList.add("hidden");
+    signupForm.classList.remove("hidden");
+    clearMsgs();
+  });
+
+  showLogin.addEventListener("click", () => {
+    signupForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+    clearMsgs();
+  });
+
+  function clearMsgs() {
+    successMsg.style.display = "none";
+    errorMsg.style.display = "none";
+  }
+
+  function getParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  }
+
+  window.onload = function() {
+    const status = getParam("status");
+    const msg = getParam("msg");
+
+    
+    signupForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+
+    if (status === "registered") {
+      successMsg.textContent = "Registration successful! Please log in.";
+      successMsg.style.display = "block";
+    } else if (status === "exists") {
+      errorMsg.textContent = "Email already registered. Please log in.";
+      errorMsg.style.display = "block";
+    } else if (status === "invalid") {
+      errorMsg.textContent = "Invalid email or password.";
+      errorMsg.style.display = "block";
+    } else if (status === "error") {
+      errorMsg.textContent = msg || "Something went wrong.";
+      errorMsg.style.display = "block";
+    }
+  };
+</script>
+</body>
+</html>
