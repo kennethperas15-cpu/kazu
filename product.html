@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.03 Perfume Collection</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Playfair Display", serif;
+    }
+
+    body {
+      background: url('https://i.ibb.co/4pD1fBQ/bg-blur.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #6b4a1b;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #000;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #6b4a1b;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .card {
+      background-color: #e6cdb1;
+      border-radius: 25px;
+      width: 75%;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .category {
+      width: 45%;
+      text-align: center;
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      color: #6b4a1b;
+      cursor: pointer;
+      border-bottom: 1px solid #c49a6c;
+      width: fit-content;
+      margin: 0 auto 1rem auto;
+      padding-bottom: 0.3rem;
+      transition: color 0.3s;
+    }
+
+    .category-title:hover {
+      color: #9b6b3d;
+    }
+
+    .perfume-list {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .perfume-list.active {
+      max-height: 600px;
+      opacity: 1;
+    }
+
+    .perfume {
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .perfume-list.active .perfume {
+      opacity: 1;
+    }
+
+    .perfume-name {
+      font-size: 1.4rem;
+      color: #7a4a26;
+      margin-bottom: 0.5rem;
+    }
+
+    .perfume-desc {
+      font-size: 0.95rem;
+      color: #2c2c2c;
+      margin-bottom: 1rem;
+      max-width: 250px;
+      margin: 0 auto 1rem;
+    }
+
+    .perfume img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .card {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .category {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 class="logo">12.03</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Product</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      
+      <div class="category">
+        <h3 class="category-title" id="women-btn">Women's Perfume</h3>
+        <div class="perfume-list" id="women-list">
+          <div class="perfume">
+            <h2 class="perfume-name">Mary</h2>
+            <p class="perfume-desc">
+              Soft, comforting scent reminiscent of clean talcum powder.
+            </p>
+            <img src="3.jpg" alt="Mary Perfume" />
+          </div>
+
+          <div class="perfume">
+            <h2 class="perfume-name">Hannah</h2>
+            <p class="perfume-desc">
+              Warm, cozy blend of vanilla, coffee, and sweet cream.
+            </p>
+            <img src="2.jpg" alt="Hannah Perfume" />
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="category">
+        <h3 class="category-title" id="men-btn">Men's Perfume</h3>
+        <div class="perfume-list" id="men-list">
+          <div class="perfume">
+            <h2 class="perfume-name">Abraham</h2>
+            <p class="perfume-desc">
+              Bold and masculine with leather, cinnamon, and amber.
+            </p>
+            <img src="1.jpg" alt="Abraham Perfume" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const womenBtn = document.getElementById("women-btn");
+    const menBtn = document.getElementById("men-btn");
+    const womenList = document.getElementById("women-list");
+    const menList = document.getElementById("men-list");
+
+    womenBtn.addEventListener("click", () => {
+      womenList.classList.toggle("active");
+      menList.classList.remove("active");
+    });
+
+    menBtn.addEventListener("click", () => {
+      menList.classList.toggle("active");
+      womenList.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
